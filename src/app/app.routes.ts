@@ -4,7 +4,7 @@ import { LoginComponent } from './components/login';
 import { StaffComponent } from './components/staff/staff.component';
 import { CompanyComponent } from './components/company/company.component';
 import { LayoutComponent } from './components/layout/layout.component';
-// import { authGuard } from './auth.guard';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -14,19 +14,19 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
       },
 
       {
         path: 'staff',
         component: StaffComponent,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
       },
 
       {
         path: 'company',
         component: CompanyComponent,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
       },
 
       {
