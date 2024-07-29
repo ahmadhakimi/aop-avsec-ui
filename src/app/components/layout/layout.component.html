@@ -1,0 +1,54 @@
+<mat-sidenav-container [hasBackdrop]="true" class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" [opened]="sideNavOpen">
+    <mat-nav-list>
+      <button mat-icon-button (click)="toggleSideNav()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <a mat-list-item routerLink="/home">Home</a>
+      <a mat-list-item routerLink="/staff">Staff</a>
+      <a mat-list-item routerLink="/company">Company</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="toggleSideNav()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <h2>Welcome To AVSEC Online</h2>
+      <div class="spacer"></div>
+
+      <!-- toggle theme  -->
+
+      <mat-slide-toggle [(ngModel)]="isChecked" (change)="toggleTheme($event)">
+        {{ isChecked ? "Dark Mode" : "light Mode" }}
+      </mat-slide-toggle>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="account-button">
+        <mat-icon class="account-circle-icon">account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>User Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>password</mat-icon>
+          <span>Change Password</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <!-- add routing for component contents  -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
