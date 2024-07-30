@@ -41,7 +41,15 @@ export class AuthService {
     );
   }
 
+  // get isLoggedIn(): boolean {
+  //   return !!localStorage.getItem('currentUser');
+  // }
+
   get isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser');
+    // Ensure we're in a browser environment before accessing localStorage
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return !!localStorage.getItem('currentUser');
+    }
+    return false;
   }
 }

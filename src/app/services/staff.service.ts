@@ -14,7 +14,27 @@ export class StaffService {
     console.log('HttpClient instance:', http);
   }
 
+  // get all staffs
+
   getStaffList(): Observable<Staff[]> {
     return this.http.get<Staff[]>(`${this.staffUrl}`);
+  }
+
+  // view a staff by id
+
+  getViewStaff(id: string): Observable<Staff> {
+    return this.http.get<Staff>(`${this.staffUrl}/${id}`);
+  }
+
+  // update staff by id
+
+  updateStaff(id: string, staff: Staff): Observable<Staff> {
+    return this.http.put<Staff>(`${this.staffUrl}/${id}`, staff);
+  }
+
+  // delete staff by id
+
+  deleteStaff(id: string): Observable<Staff> {
+    return this.http.delete<Staff>(`${this.staffUrl}/${id}`);
   }
 }

@@ -5,6 +5,7 @@ import { StaffComponent } from './components/staff/staff.component';
 import { CompanyComponent } from './components/company/company.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { authGuard } from './auth.guard';
+import path from 'path';
 
 export const routes: Routes = [
   {
