@@ -15,4 +15,10 @@ mat-card {
       }
     }
   }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    background-color: red($color: #000000);
+  }
 }

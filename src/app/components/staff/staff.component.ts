@@ -18,6 +18,10 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 
+import { EditStaffComponent } from './edit-staff/edit-staff.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-staff',
   standalone: true,
@@ -34,6 +38,7 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatPaginator,
     MatSortModule,
+    ReactiveFormsModule,
     // HttpClientModule,
   ],
   providers: [AuthService, StaffService],
@@ -41,7 +46,20 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './staff.component.scss',
 })
 export class StaffComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'fullName', 'email', 'role', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'fullName',
+    'email',
+    // 'terminal',
+    'role',
+    // 'status',
+    // 'created by',
+    // 'updated by',
+    // 'deleted?',
+    // 'created at',
+    // 'updated at',
+    'actions',
+  ];
   dataSource = new MatTableDataSource<Staff>();
   // view child paginator and sort
 
@@ -62,6 +80,7 @@ export class StaffComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
+  // logics for get all staff
   getStaffList(): void {
     this.staffService.getStaffList().subscribe(
       (data: Staff[]) => {
@@ -81,7 +100,21 @@ export class StaffComponent implements OnInit, AfterViewInit {
     );
   }
 
+  // logics for edit staff
+
+  editStaff(id: string, updatedStaff: Staff): void {
+    this.staffService.updateStaff(id, updatedStaff).subscribe({
+      next: (staff: Staff) => {
+        this.getStaffList(); // Refresh the list after successful update
+      },
+      error: (error) => {
+        console.error('Error updating staff:', error);
+      },
+    });
+  }
+
   // dialog for create staff form
+
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
@@ -117,6 +150,26 @@ export class StaffComponent implements OnInit, AfterViewInit {
       error: (err) => {
         console.error('Error fetching staff details', err);
       },
+    });
+  }
+
+  // open dialog edit staff
+  openEditDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    staff: Staff
+  ): void {
+    const dialogRef = this.dialog.open(EditStaffComponent, {
+      width: '80%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: staff,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.editStaff(staff.id, result); // Refresh the list after successful addition
+      }
     });
   }
 
