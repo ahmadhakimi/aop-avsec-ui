@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { ViewStaffComponent } from './view-staff/view-staff.component';
@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { EditStaffComponent } from './edit-staff/edit-staff.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-staff',
@@ -39,6 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatPaginator,
     MatSortModule,
     ReactiveFormsModule,
+    MatTooltipModule,
+    MatDialogModule,
     // HttpClientModule,
   ],
   providers: [AuthService, StaffService],
@@ -50,16 +53,18 @@ export class StaffComponent implements OnInit, AfterViewInit {
     'id',
     'fullName',
     'email',
-    // 'terminal',
+    'terminal',
     'role',
-    // 'status',
-    // 'created by',
-    // 'updated by',
-    // 'deleted?',
-    // 'created at',
-    // 'updated at',
+    'status',
+    'createdBy',
+    'updatedBy',
+    'createdAt',
+    'updatedAt',
+    'deleted',
     'actions',
   ];
+
+  
   dataSource = new MatTableDataSource<Staff>();
   // view child paginator and sort
 
@@ -169,6 +174,20 @@ export class StaffComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.editStaff(staff.id, result); // Refresh the list after successful addition
+      }
+    });
+  }
+
+  // confirm delete dialog
+  openDeleteDialog(staff: Staff): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '320px',
+      data: { id: staff.id, fullName: staff.fullName }, // Ensure staff data is being passed correctly
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.getStaffList(); // Refresh the list after successful deletion
       }
     });
   }
