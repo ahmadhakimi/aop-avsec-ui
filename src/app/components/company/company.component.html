@@ -1,1 +1,94 @@
-<p>company works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Company List</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="mat-table">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id" matSort>
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <!-- Company Name Column -->
+        <ng-container matColumnDef="companyName" matSort>
+          <th mat-header-cell *matHeaderCellDef>Company Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
+        </ng-container>
+
+        <!-- ROC expire date Column -->
+        <ng-container matColumnDef="rocExpDate" matSort>
+          <th mat-header-cell *matHeaderCellDef>ROC exp. date</th>
+          <td mat-cell *matCellDef="let element">{{ element.rocExpDate }}</td>
+        </ng-container>
+
+        <!-- Contact Column -->
+        <ng-container matColumnDef="contact" matSort>
+          <th mat-header-cell *matHeaderCellDef>Contact</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.telNo }} / {{ element.faxNo }}
+          </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="companyEmail" matSort>
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.companyEmail }}
+          </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="companyStatus" matSort>
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.companyStatus }}
+          </td>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="address" matSort>
+          <th mat-header-cell *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.address }}
+          </td>
+        </ng-container>
+
+        <!-- createdBy Column -->
+        <ng-container matColumnDef="createdBy" matSort>
+          <th mat-header-cell *matHeaderCellDef>createdBy</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.createdBy }}
+          </td>
+        </ng-container>
+
+        <!-- updatedBy Column -->
+        <ng-container matColumnDef="updatedBy" matSort>
+          <th mat-header-cell *matHeaderCellDef>updatedBy</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.updatedBy }}
+          </td>
+        </ng-container>
+
+        <!-- Attachment Column -->
+        <!--       <ng-container matColumnDef="attachment">
+          <th mat-header-cell *matHeaderCellDef>Attachment</th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.attachment; else noAttachment">
+              <a [href]="'/attachments/' + element.attachment.id" download>
+                {{ element.attachment.name }}
+              </a>
+              ({{ element.attachment.type }})
+            </ng-container>
+            <ng-template #noAttachment>No attachment</ng-template>
+          </td>
+        </ng-container> -->
+
+        <!-- Table Header and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

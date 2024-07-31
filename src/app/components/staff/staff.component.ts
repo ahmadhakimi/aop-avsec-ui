@@ -64,7 +64,6 @@ export class StaffComponent implements OnInit, AfterViewInit {
     'actions',
   ];
 
-  
   dataSource = new MatTableDataSource<Staff>();
   // view child paginator and sort
 
@@ -182,12 +181,12 @@ export class StaffComponent implements OnInit, AfterViewInit {
   openDeleteDialog(staff: Staff): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '320px',
-      data: { id: staff.id, fullName: staff.fullName }, // Ensure staff data is being passed correctly
+      data: { id: staff.id, fullName: staff.fullName },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getStaffList(); // Refresh the list after successful deletion
+        this.getStaffList();
       }
     });
   }
