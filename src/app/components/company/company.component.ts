@@ -7,11 +7,22 @@ import { MatTableModule } from '@angular/material/table';
 import { NgIf } from '@angular/common';
 import { error } from 'console';
 import { MatSortModule } from '@angular/material/sort';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { CreateCompanyComponent } from './create-company/create-company.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-company',
   standalone: true,
-  imports: [MatCardModule, MatTableModule, NgIf, MatSortModule],
+  imports: [
+    MatCardModule,
+    MatTableModule,
+    NgIf,
+    MatSortModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss',
   providers: [CompanyService],
@@ -31,13 +42,16 @@ export class CompanyComponent {
     'updatedBy',
   ];
 
-  constructor(private companyService: CompanyService) {}
+  constructor(
+    private companyService: CompanyService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getCompanyList();
   }
 
-  // company list 
+  // company list
 
   getCompanyList(): void {
     this.companyService.getCompanyList().subscribe(
@@ -51,6 +65,23 @@ export class CompanyComponent {
     );
   }
 
-  // create company 
-  
+  // create company
+
+  // open dialog to create company
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    const dialogRef = this.dialog.open(CreateCompanyComponent, {
+      width: '80%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.getCompanyList(); // Refresh the list after successful addition
+      }
+    });
+  }
 }

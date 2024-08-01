@@ -34,8 +34,8 @@ export class DeleteDialogComponent {
 
   confirmDelete() {
     this.staffService.deleteStaff(this.data.id).subscribe({
-      next: () => {
-        console.log('The user has been deleted successfully ');
+      next: (response) => {
+        console.log(response);
         this.dialogRef.close(true);
       },
 

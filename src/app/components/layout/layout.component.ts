@@ -52,8 +52,8 @@ export class LayoutComponent implements OnInit {
   isChecked: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {
-    if (this.isLocalStorageAvailable()) {
-      this.isChecked = localStorage.getItem('theme') === 'dark';
+    if (this.isSessionStorageAvailable()) {
+      this.isChecked = sessionStorage.getItem('theme') === 'dark';
       this.applyTheme(this.isChecked);
     }
   }
@@ -72,7 +72,7 @@ export class LayoutComponent implements OnInit {
   // toggle theme
   toggleTheme(event: MatSlideToggleChange) {
     this.isChecked = event.checked;
-    localStorage.setItem('theme', this.isChecked ? 'dark' : 'light');
+    sessionStorage.setItem('theme', this.isChecked ? 'dark' : 'light');
     this.applyTheme(this.isChecked);
   }
 
@@ -89,11 +89,11 @@ export class LayoutComponent implements OnInit {
 
   // local storage available method
 
-  isLocalStorageAvailable(): boolean {
+  isSessionStorageAvailable(): boolean {
     try {
-      const testKey = 'localStorageTest';
-      localStorage.setItem(testKey, 'test');
-      localStorage.removeItem(testKey);
+      const testKey = 'sessionStorageTest';
+      sessionStorage.setItem(testKey, 'test');
+      sessionStorage.removeItem(testKey);
       return true;
     } catch (e) {
       return false;
@@ -103,7 +103,7 @@ export class LayoutComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe(
       (response) => {
-        console.log('Logged out successfully');
+        console.log(response);
         this.router.navigate(['/login']); // Navigate to the login page or another appropriate page
       },
       (error) => {

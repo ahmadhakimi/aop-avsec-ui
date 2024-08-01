@@ -1,7 +1,7 @@
 export interface Company {
   id: string;
   companyName: string;
-  rockExpDate: Date;
+  rocExpDate: Date;
   telNo: string;
   faxNo: string;
   companyEmail: string;
@@ -23,4 +23,8 @@ export interface Attachment {
   id: string;
   name: string;
   type: string;
+  // data: byte[]
+  createdAt: Date;
+  updatedAt: Date;
+  company: Company;
 }

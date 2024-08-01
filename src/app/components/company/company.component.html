@@ -3,6 +3,15 @@
     <mat-card-title>Company List</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <!-- modal button -->
+
+    <div class="modal-form">
+      <button mat-fab extended (click)="openDialog('150', '150')">
+        <mat-icon>add</mat-icon>
+        Add New Company
+      </button>
+    </div>
+
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" class="mat-table">
         <!-- ID Column -->

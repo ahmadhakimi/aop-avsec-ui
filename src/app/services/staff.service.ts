@@ -35,6 +35,8 @@ export class StaffService {
   // delete staff by id
 
   deleteStaff(id: string): Observable<Staff> {
-    return this.http.delete<Staff>(`${this.staffUrl}/${id}`);
+    return this.http.delete<Staff>(`${this.staffUrl}/${id}`, {
+      responseType: 'text' as 'json',
+    });
   }
 }

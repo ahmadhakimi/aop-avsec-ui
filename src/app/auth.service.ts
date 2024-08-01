@@ -25,7 +25,7 @@ export class AuthService {
     return this.http.post<any>(this.loginUrl, { email, password }).pipe(
       map((response) => {
         if (response && response.token) {
-          localStorage.setItem('currentUser', JSON.stringify(response));
+          sessionStorage.setItem('currentUser', JSON.stringify(response));
         }
         return response;
       })
@@ -35,20 +35,20 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post(this.logoutUrl, {}, { responseType: 'text' }).pipe(
       map((response) => {
-        localStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUser');
         return response;
       })
     );
   }
 
   // get isLoggedIn(): boolean {
-  //   return !!localStorage.getItem('currentUser');
+  //   return !!sessionStorage.getItem('currentUser');
   // }
 
   get isLoggedIn(): boolean {
-    // Ensure we're in a browser environment before accessing localStorage
-    if (typeof window !== 'undefined' && window.localStorage) {
-      return !!localStorage.getItem('currentUser');
+    // Ensure we're in a browser environment before accessing sessionStorage
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      return !!sessionStorage.getItem('currentUser');
     }
     return false;
   }

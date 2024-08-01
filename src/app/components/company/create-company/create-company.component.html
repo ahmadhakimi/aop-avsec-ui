@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>Create Company Form</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <mat-stepper #stepper linear>
+        <mat-step [stepControl]="firstFormGroup">
+          <!-- Company Name -->
+          <mat-form-field>
+            <mat-label>Company Name</mat-label>
+            <input matInput placeholder="Ex. abc co. ltd." />
+          </mat-form-field>
+
+          <!-- ROC expired date -->
+          <mat-form-field>
+            <mat-label>ROC Expire Date</mat-label>
+            <input matInput [matDatepicker]="picker" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <!-- tel no -->
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <!-- Second step form fields here -->
+        </mat-step>
+      </mat-stepper>
+    </form>
+  </mat-card-content>
+</mat-card>
