@@ -1,0 +1,57 @@
+mat-card {
+  mat-card-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  mat-card-content {
+    form {
+      margin-top: 1.3rem;
+      //   display: flex;
+      //   width: 100%;
+    }
+
+    mat-form-field {
+      margin: 0 1.5rem;
+      justify-content: space-evenly;
+    }
+  }
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.file-upload-container label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.file-upload-container input[type="file"] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+// mat list
+
+mat-list {
+  width: 100%;
+  display: flexbox;
+}
+
+// accordion
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}

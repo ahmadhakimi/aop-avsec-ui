@@ -80,20 +80,6 @@
           </td>
         </ng-container>
 
-        <!-- Attachment Column -->
-        <!--       <ng-container matColumnDef="attachment">
-          <th mat-header-cell *matHeaderCellDef>Attachment</th>
-          <td mat-cell *matCellDef="let element">
-            <ng-container *ngIf="element.attachment; else noAttachment">
-              <a [href]="'/attachments/' + element.attachment.id" download>
-                {{ element.attachment.name }}
-              </a>
-              ({{ element.attachment.type }})
-            </ng-container>
-            <ng-template #noAttachment>No attachment</ng-template>
-          </td>
-        </ng-container> -->
-
         <!-- Table Header and Rows -->
         <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumn"></tr>

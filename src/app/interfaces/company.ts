@@ -11,12 +11,13 @@ export interface Company {
   updatedBy: string;
   staffId: string;
   companyStatus: CompanyStatus;
+  attachment: Attachment;
 }
 
 export enum CompanyStatus {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-  PENDING = 'pending',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  PENDING = 'PENDING',
 }
 
 export interface Attachment {
@@ -26,5 +27,5 @@ export interface Attachment {
   // data: byte[]
   createdAt: Date;
   updatedAt: Date;
-  company: Company;
+  // company: Company;
 }

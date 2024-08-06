@@ -11,6 +11,8 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-company',
@@ -22,6 +24,8 @@ import { MatDialog } from '@angular/material/dialog';
     MatSortModule,
     MatIconModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInput,
   ],
   templateUrl: './company.component.html',
   styleUrl: './company.component.scss',
@@ -83,5 +87,6 @@ export class CompanyComponent {
         this.getCompanyList(); // Refresh the list after successful addition
       }
     });
+    4;
   }
 }
